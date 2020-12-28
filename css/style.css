@@ -216,7 +216,7 @@ a,button,button:focus{
     color: #fff;
     font-weight: 700;
 }
-
+/* 
 .nav-link::after {
     content: '';
     display: block;
@@ -224,17 +224,17 @@ a,button,button:focus{
     height: 2px;
     background: #f42367;
     transition: all 0.3s;
-}
-
+} */
+/* 
 .nav-link:hover::after {
     width: 100%;
-}
+} */
 
-.navbar-custom .navbar-nav li.active a,
+/* .navbar-custom .navbar-nav li.active a,
 .navbar-custom .navbar-nav li a:hover,
 .navbar-custom .navbar-nav li a:active {
     border-color: #f42367 !important;
-}
+} */
 
 .navbar-toggle {
     font-size: 24px;
@@ -339,11 +339,11 @@ a,button,button:focus{
     font-weight: 700;
 }
 
-.navbar-nav .side-bar li.active a,
+/* .navbar-nav .side-bar li.active a,
 .navbar-nav .side-bar li a:hover,
 .navbar-nav .side-bar li a:active {
     border-color: #f42367 !important;
-}
+} */
 
 @media screen and (max-height: 450px) {
     .sidenav {
@@ -378,12 +378,12 @@ a,button,button:focus{
     margin: 0 15px;
 }
 
-.nav-sticky.navbar-custom .navbar-nav li.active a,
+/* .nav-sticky.navbar-custom .navbar-nav li.active a,
 .nav-sticky.navbar-custom .navbar-nav li a:hover,
 .nav-sticky.navbar-custom .navbar-nav li a:active {
-    color: #6a7ff9 !important;
+    color: #6a7ff9;
     border-color: #f42367;
-}
+} */
 
 .nav-sticky.navbar-custom .logo {
     color: rgb(255, 255, 255);
@@ -608,12 +608,12 @@ a,button,button:focus{
     padding: 12px 32px;
     position: relative;
     text-align: right;
-    border: 5px solid rgba(255, 255, 255, 0.48);
+    border: 5px solid transparent;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.16);
 }
 
 .timeline-page .timeline-item .date-label-left::after {
-    border: 3px solid rgba(255, 255, 255, 0.8);
+    border: 3px solid transparent;
     border-radius: 50%;
     content: "";
     height: 20px;
@@ -643,12 +643,12 @@ a,button,button:focus{
     padding: 12px 32px;
     position: relative;
     text-align: left;
-    border: 5px solid rgba(255, 255, 255, 0.48);
+    border: 5px solid transparent;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.16);
 }
 
 .timeline-page .timeline-item .duration-right::after {
-    border: 3px solid rgba(255, 255, 255, 0.8);
+    border: 3px solid transparent;
     border-radius: 50%;
     content: "";
     height: 20px;
