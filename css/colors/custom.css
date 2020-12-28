@@ -58,12 +58,15 @@ section.section.bg-custom-dark {
     color: #FFFFFF;
 }
 
-.bg-custom-dark .section-title h2{
+.bg-custom-dark .section-title h2,
+.bg-skills .section-title h2{
     color: #FFFFFF
 }
 
 .bg-custom-dark .under-line,
-.bg-custom-dark .dot{
+.bg-custom-dark .dot,
+.bg-skills .under-line,
+.bg-skills .dot {
     background-color: #FFFFFF;
 }
 
