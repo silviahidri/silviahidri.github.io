@@ -1,15 +1,46 @@
-/* Theme Name:Selfme - Responsive Personal Portfolio Template
-   Author: Themesdesign
-   Version: 1.0.0
-   File Description: Main JS file of the template
-*/
-! function($) {
-    "use strict";
-    var ProgressBar = require('progressbar.js');
-    var SelfMeApp = function() {};
-
-    SelfMeApp.prototype.initStickyMenu = function() {
-        $(window).scroll(function() {
+import "../css/style.css";
+import "../css/colors/custom.css";
+declare global{
+interface JQuery{
+    scrollspy(opt:{offset:number}):void;
+    isotope(opt: {
+        filter: string,
+        layoutMode?: string,
+        animationOptions: {
+            animationDuration?: number,
+            duration?: number,
+            easing: string,
+            queue?:boolean
+        }
+    }): void;
+    magnificPopup(obj: {
+        type:string,
+        closeOnContentClick?:boolean, 
+        mainClass: 'mfp-fade',
+        gallery?: {
+            enabled:boolean, 
+            navigateByImgClick: boolean,
+            preload: number[]
+        },
+        disableOn?:number, 
+        removalDelay?: number,
+        preloader?: false,
+        fixedContentPos?: false
+    }):void;
+    owlCarousel(opt: {
+        autoPlay: number,
+            stopOnHover: boolean,
+            navigation: boolean,
+            paginationSpeed: number,
+            goToFirstSpeed: number,
+            singleItem: boolean,
+            autoHeight: boolean
+    }):any;
+}
+}
+export class App{
+    public initStickyMenu(){
+        $(window).on("scroll", () => {
             var scroll = $(window).scrollTop();
 
             if (scroll >= 50) {
@@ -18,42 +49,64 @@
                 $(".sticky").removeClass("nav-sticky");
             }
         });
-    },
-
-    SelfMeApp.prototype.initSmoothLink = function() {
-        $('.navbar-nav a').on('click', function(event) {
-            var $anchor = $(this);
+    }
+    public initSmoothLink(){
+        $('.navbar-nav a').on('click', (event) => {
+            var $anchor = $(event.target).closest('a');
             $('html, body').stop().animate({
                 scrollTop: $($anchor.attr('href')).offset().top - 0
             }, 1500, 'easeInOutExpo');
             event.preventDefault();
         });
 
-        $('a.smooth-scroll').on('click', function(event) {
-            var $anchor = $(this);
+        $('a.smooth-scroll').on('click', (event) => {
+            var $anchor = $(event.target).closest('a');
             $('html, body').stop().animate({
                 scrollTop: $($anchor.attr('href')).offset().top - 0
             }, 1500, 'easeInOutExpo');
             event.preventDefault();
         });
-    },
-
-    SelfMeApp.prototype.initScrollspy = function() {
+    }
+    public initScrollSpy(){
+        
         $("#navbarCollapse").scrollspy({
             offset: 20
         });
-    },
-
-    SelfMeApp.prototype.initcounterUp = function() {
+    }
+    public initCounterUp(){
         var a = 0;
-        $(window).scroll(function() {
+        $(window).on("scroll", () => {
             var oTop = $('#counter').offset().top - window.innerHeight;
             if (a == 0 && $(window).scrollTop() > oTop) {
-                $('.counter-value').each(function() {
-                    var $this = $(this),
+                $('.counter-value').each((idx, element) => {
+                    var $this = $(element),
                         countTo = $this.attr('data-count');
                     $({
-                        countNum: $this.text()
+                        countNum: parseFloat($this.text())
+                    }).animate({
+                            countNum: countTo
+                        },
+
+                        {
+
+                            duration: 2000,
+                            easing: 'swing',
+                            step: function() {
+                                
+                                $this.text(Math.floor(this.countNum));
+                            },
+                            complete: function() {
+                                $this.text(this.countNum);
+                                //alert('finished');
+                            }
+
+                        });
+                });
+                $('.counter-value').each((idx, element)=> {
+                    var $this = $(element),
+                        countTo = $this.attr('data-count');
+                    $({
+                        countNum: parseFloat($this.text())
                     }).animate({
                             countNum: countTo
                         },
@@ -75,10 +128,9 @@
                 a = 1;
             }
         });
-    },
-
-    SelfMeApp.prototype.initPortfolioFilter = function() {
-
+        
+    }
+    public initPortfolioFilter(){
         $(window).on('load', function () {
             //PORTFOLIO FILTER 
             var $container = $('.projects-wrapper');
@@ -109,10 +161,8 @@
                 return false;
             });
         });
-        
-    },    
-
-    SelfMeApp.prototype.initMagnificPopup = function() {
+    }
+    public initMagnificPopup(){
         $('.mfp-image').magnificPopup({
             type: 'image',
             closeOnContentClick: true,
@@ -131,9 +181,8 @@
             preloader: false,
             fixedContentPos: false
         });
-    },
-
-    SelfMeApp.prototype.initTestimonial = function() {
+    }
+    public initTestimonial(){
         $("#testi").owlCarousel({
             autoPlay: 3000,
             stopOnHover: true,
@@ -143,23 +192,20 @@
             singleItem: true,
             autoHeight: true
         });
-    },
+    }
 
-    SelfMeApp.prototype.init = function() {
+    public init(){
         this.initStickyMenu();
         this.initSmoothLink();
-        this.initScrollspy();
-        this.initcounterUp();
+        this.initScrollSpy();
+        this.initCounterUp();
         this.initPortfolioFilter();
         this.initMagnificPopup();
         this.initTestimonial();
-    },
-    //init
-    $.SelfMeApp = new SelfMeApp, $.SelfMeApp.Constructor = SelfMeApp
-}(window.jQuery),
+    }
+    
+}
 
-//initializing
-function($) {
-    "use strict";
-    $.SelfMeApp.init();
-}(window.jQuery);
+(() => {
+    new App().init();
+})();
