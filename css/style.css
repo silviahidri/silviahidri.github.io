@@ -410,7 +410,7 @@ a,button,button:focus{
 /******************
     Skills
 *******************/
-
+/* 
 .circle-wrap {
     margin: 0 0.5rem;
     display: inline-block;
@@ -464,7 +464,7 @@ a,button,button:focus{
     z-index: 100;
     font-weight: 700;
     font-size: 2em;
-  }
+  } */
 
 .bg-skills{
     background-image: url(../images/skills-bg-2.png);
@@ -598,7 +598,7 @@ a,button,button:focus{
 *******************/
 
 .bg-home {
-    background-image: url(../images/bg-home-1.jpg);
+    background-image: url(../images/main-bg.png);
     background-size: cover;
     position: relative;
     background-position: center center;
